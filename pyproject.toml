@@ -1,0 +1,90 @@
+[tool.poetry]
+name = "fastapi_validation_i18n"
+version = "0.3.0"
+description = ""
+authors = ["whc <whccchi@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "fastapi_validation_i18n"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.99"
+pydantic = "^1.10"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.0.284"
+yapf = "^0.40.1"
+uvicorn = "^0.23.2"
+mypy = "^1.5.0"
+pytest = "^7.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.mypy]
+strict = true
+
+[tool.yapf]
+column_limit = 88
+based_on_style = "google"
+split_before_logical_operator = true
+split_before_arithmetic_operator = true # flake8 W504
+
+[tool.ruff]
+line-length = 88
+select = [
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "F", # pyflakes
+    "I", # isort
+    "C", # flake8-comprehensions
+    "B", # flake8-bugbear
+]
+ignore = [
+    "E501",
+    "B008",
+    "E402",
+    "E226",
+    "B904",
+    "B030",
+    "B006"
+]
+extend-exclude = [
+    ".venv",
+    ".git",
+    "__pycache__",
+    "__init__.py",
+    "frontend",
+]
+[tool.ruff.isort]
+force-single-line = false
+force-sort-within-sections = true
+known-third-party = ["fastapi", "pydantic", "starlette"]
+single-line-exclusions = ["typing"]
+order-by-type = false
+[tool.ruff.mccabe]
+max-complexity = 10
+[tool.ruff.flake8-quotes]
+inline-quotes = "single"
+
+[tool.pytest.ini_options]
+addopts = """
+  -ra
+  -q
+  --strict-markers
+"""
+
+testpaths = [
+  "tests"
+]
+
+log_format = "%(asctime)s (%(filename)-16s:%(lineno)-3s) %(levelname)-8s %(message)s"
+log_date_format = "%Y-%M-%D %H:%M:%S"
+
+
+[tool.poetry.scripts]
+publish-locale = 'fastapi_validation_i18n.scripts.publish:main'
