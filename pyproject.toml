@@ -35,6 +35,8 @@ name = "fastapi_validation_i18n"
 authors = ["whc <whccchi@gmail.com>"]
 license = "MIT"
 packages = [{include = "fastapi_validation_i18n"}]
+description = ""
+version = "0.1.0"
 
 [tool.poetry.dependencies]
 python = "^3.8"

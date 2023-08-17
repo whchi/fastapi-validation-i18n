@@ -62,11 +62,11 @@ error message with i18n support in FastAPI
 - built-in locales are **zh-TW, en-US, ja-JP**, you can change the locales by yourself
 
 ## How to run
-1. publish locales to your app path 
+1. publish locales to your app path
 ```bash
-poetry run publish-locale <your-path>
+poetry run publish-locale [your-path] # default to "locale" in your project path
 ```
-2. add middlewares and exception handler to your FastAPI app
+1. add middleware and exception handler to your FastAPI app
 ```py
 from fastapi import FastAPI
 from fastapi_validation_i18n import I18nMiddleware, i18n_exception_handler
@@ -81,15 +81,15 @@ app.add_exception_handler(
     i18n_exception_handler
 )
 ```
-3. start use it 
- 
+3. start use it
+
 there's 3 way to set locale
- 
+
 1. set `accept-language` header to your request
 2. set an API with `locale` in path
 3. set `locale` query parameter to your request
 
-you can see the [example](example) for more detail 
+you can see the [example](example) for more detail
 
 
 ## todo
