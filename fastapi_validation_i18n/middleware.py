@@ -23,7 +23,7 @@ class I18nMiddleware(BaseHTTPMiddleware):
                  request.path_params.get('locale', None) or \
                  request.query_params.get('locale', None) or \
                  self.fallback_locale
-        if locale not in self.locale_list:x
+        if locale not in self.locale_list:
             locale = self.fallback_locale
 
         request.state.locale = locale
