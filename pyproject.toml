@@ -1,10 +1,39 @@
+[build-system]
+requires = ["hatchling >= 1.13.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "fastapi_validation_i18n/__init__.py"
+
+[project]
+name = "fastapi_validation_i18n"
+description = "FastAPI request validation with i18n error message"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+authors = [
+    { name = "whchi", email = "whccchi@gmail.com" },
+]
+dependencies = [
+    "fastapi<0.100.0",
+    "pydantic>=1.10, <2.0",
+]
+dynamic = ["version"]
+keywords = [
+    'fastapi',
+    'pydantic',
+    'validation',
+    'i18n',
+]
+[project.urls]
+Repository = "https://github.com/whchi/fastapi-validation-i18n"
+[project.scripts]
+publish-locale = 'fastapi_validation_i18n.scripts.publish:main'
+
 [tool.poetry]
 name = "fastapi_validation_i18n"
-version = "0.3.0"
-description = ""
 authors = ["whc <whccchi@gmail.com>"]
 license = "MIT"
-readme = "README.md"
 packages = [{include = "fastapi_validation_i18n"}]
 
 [tool.poetry.dependencies]
@@ -19,13 +48,6 @@ yapf = "^0.40.1"
 uvicorn = "^0.23.2"
 mypy = "^1.5.0"
 pytest = "^7.4.0"
-
-[build-system]
-requires = ["hatchling >= 1.13.0"]
-build-backend = "hatchling.build"
-
-[tool.hatch.version]
-path = "fastapi/__init__.py"
 
 [tool.mypy]
 strict = true
