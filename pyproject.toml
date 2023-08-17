@@ -15,18 +15,10 @@ authors = [
     { name = "whchi", email = "whccchi@gmail.com" },
 ]
 dependencies = [
-    "fastapi^0.99",
-    "pydantic^1.10",
+    "fastapi<0.100.0",
+    "pydantic>=1.10,<2.0",
 ]
 dynamic = ["version"]
-
-
-[tool.poetry]
-name = "testpkg"
-version = "0.1.0"
-description = ""
-authors = ["whc <whccchi@gmail.com>"]
-readme = "README.md"
 
 [project.urls]
 Repository = "https://github.com/whchi/fastapi_validation_i18n"
@@ -52,9 +44,6 @@ yapf = "^0.40.1"
 uvicorn = "^0.23.2"
 mypy = "^1.5.0"
 pytest = "^7.4.0"
-
-[tool.hatch.version]
-path = "fastapi/__init__.py"
 
 [tool.mypy]
 strict = true
