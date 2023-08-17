@@ -89,7 +89,7 @@ there's 3 way to set locale
 2. set an API with `locale` in path
 3. set `locale` query parameter to your request
 
-you can see the [example](example) for more detail
+you can see the [example](https://github.com/whchi/fastapi-validation-i18n/tree/main/example) for more detail
 
 
 ## todo
