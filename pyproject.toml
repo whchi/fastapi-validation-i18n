@@ -20,14 +20,6 @@ dependencies = [
 ]
 dynamic = ["version"]
 
-
-[tool.poetry]
-name = "testpkg"
-version = "0.1.0"
-description = ""
-authors = ["whc <whccchi@gmail.com>"]
-readme = "README.md"
-
 [project.urls]
 Repository = "https://github.com/whchi/fastapi_validation_i18n"
 
