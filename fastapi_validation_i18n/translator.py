@@ -5,7 +5,7 @@ from typing import Any, Dict
 class Translator:
     _instances: Dict[str, 'Translator'] = {}
 
-    def __new__(cls, locale: str, **args) -> 'Translator':
+    def __new__(cls, locale: str, **args: Any) -> 'Translator':
         if locale not in cls._instances:
             cls._instances[locale] = super().__new__(cls)
         return cls._instances[locale]
@@ -17,7 +17,7 @@ class Translator:
     def load_translation(self, file_key: str) -> Any | Dict[str, Any] | None:
         file_path = f'{self.locale_path}/{self.locale}/{file_key}.json'
         try:
-            with open(file_path, 'r', encoding='utf-8') as file:
+            with open(file_path, encoding='utf-8') as file:
                 translation = json.load(file)
             return translation
         except FileNotFoundError:
@@ -37,4 +37,4 @@ class Translator:
         if kwargs:
             translation = translation.format(**kwargs)  # type: ignore
 
-        return translation  # type: ignore
+        return translation

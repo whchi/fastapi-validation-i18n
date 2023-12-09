@@ -64,7 +64,7 @@ def test_success():
             }
         }
     }
-    assert Example(**data).dict() == data
+    assert Example(**data).dict() == data  # type: ignore
 
 
 def test_i18n_validation():
@@ -93,7 +93,7 @@ def test_i18n_validation():
         }
     }
     with pytest.raises(ValidationError) as exc_info:
-        Example(**data)
+        Example(**data)  # type: ignore
         assert Helper.make_errors(exc_info.value, 'zh-TW', 'locale') == [{
             "loc": ["body", "string"],
             "msg": "確保此值最多有 10 個字符",

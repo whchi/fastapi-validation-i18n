@@ -64,7 +64,8 @@ error message with i18n support in FastAPI
 ## How to run
 1. publish locales to your app path
 ```bash
-poetry run publish-locale [your-path] # default to "locale" in your project path
+# default to "locale" in your project path
+poetry run publish-locale <your-path> [--locale]
 ```
 1. add middleware and exception handler to your FastAPI app
 ```py

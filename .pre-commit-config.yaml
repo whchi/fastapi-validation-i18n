@@ -1,0 +1,44 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-yaml
+        args:
+          - --unsafe
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: debug-statements
+      - id: check-added-large-files
+      - id: check-merge-conflict
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.15.0
+    hooks:
+      - id: pyupgrade
+  - repo: https://github.com/google/yapf
+    rev: v0.40.2
+    hooks:
+      - id: yapf
+        args:
+          - -i
+          - column_limit = 88
+          - based_on_style = "google"
+          - split_before_logical_operator = true
+          - split_before_arithmetic_operator = true
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.7
+    hooks:
+      - id: ruff
+        args:
+          - --fix
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.7.1
+    hooks:
+      - id: mypy
+        args:
+          - --strict-optional
+          - --ignore-missing-imports
+          - --warn-redundant-casts
+          - --warn-unused-ignores
+          - --disallow-any-generics
+          - --check-untyped-defs
+          - --disallow-untyped-defs
