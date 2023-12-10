@@ -58,7 +58,8 @@ error message with i18n support in FastAPI
 }
 ```
 ## Attention
-- support pydantic v1 only now(2023/08/16)
+- For FastAPI >=0.100.0 and pydantic v2, please use **^0.4.0**
+- For FastAPI < 0.100.0 nad pydantic v1, please use **^0.3.0**
 - built-in locales are **zh-TW, en-US, ja-JP**, you can change the locales by yourself
 
 ## How to run
