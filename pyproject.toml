@@ -16,7 +16,7 @@ authors = [
 ]
 dependencies = [
     "fastapi>0.99",
-    "pydantic^2",
+    "pydantic>=2",
 ]
 dynamic = ["version"]
 keywords = [
