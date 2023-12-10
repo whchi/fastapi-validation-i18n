@@ -34,3 +34,4 @@ frontend/src/common/pitaya-UI
 .k8s
 poetry.lock
 dist
+pydantic_v2_script.py
