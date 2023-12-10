@@ -1,0 +1,59 @@
+{
+  "errors": [
+    {
+      "type": "string_too_short",
+      "loc": [
+        "body",
+        "nested",
+        "inner",
+        "inner_body",
+        0,
+        "deep_body"
+      ],
+      "msg": "String should have at least 20 characters",
+      "input": "stt",
+      "ctx": {
+        "min_length": 20
+      },
+      "url": "https://errors.pydantic.dev/2.5/v/string_too_short"
+    },
+    {
+      "type": "url_scheme",
+      "loc": [
+        "body",
+        "nested",
+        "inner",
+        "inner_body",
+        0,
+        "url"
+      ],
+      "msg": "URL scheme should be 'http' or 'https'",
+      "input": "htxtps://example.com/",
+      "ctx": {
+        "expected_schemes": "'http' or 'https'"
+      },
+      "url": "https://errors.pydantic.dev/2.5/v/url_scheme"
+    },
+    {
+      "type": "union_tag_invalid",
+      "loc": [
+        "body",
+        "nested",
+        "inner",
+        "cat"
+      ],
+      "msg": "Input tag 'rrr' found using 'color' does not match any of the expected tags: 'black', 'white'",
+      "input": {
+        "pet_type": "dog",
+        "color": "rrr",
+        "black_name": "string"
+      },
+      "ctx": {
+        "discriminator": "'color'",
+        "tag": "rrr",
+        "expected_tags": "'black', 'white'"
+      },
+      "url": "https://errors.pydantic.dev/2.5/v/union_tag_invalid"
+    }
+  ]
+}

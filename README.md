@@ -91,9 +91,3 @@ there's 3 way to set locale
 3. set `locale` query parameter to your request
 
 you can see the [example](https://github.com/whchi/fastapi-validation-i18n/tree/main/example) for more detail
-
-
-## todo
-- [ ] support pydantic v2
-- [ ] other i18n support
-- [ ] support FastAPI>0.99
