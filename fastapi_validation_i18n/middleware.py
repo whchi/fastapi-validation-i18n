@@ -1,5 +1,3 @@
-from typing import Sequence
-
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
 from starlette.requests import Request
 from starlette.types import ASGIApp
@@ -9,8 +7,12 @@ class I18nMiddleware(BaseHTTPMiddleware):
 
     def __init__(self,
                  app: ASGIApp,
-                 locale_path: str = 'locale',
-                 locale_list: Sequence[str] = ('zh-TW'),
+                 locale_path: str = 'locales',
+                 locale_list: tuple[str, ...] = (
+                     'zh-TW',
+                     'en-US',
+                     'ja-JP',
+                 ),
                  fallback_locale: str = 'zh-TW'):
         super().__init__(app)
         self.locale_path = locale_path
@@ -30,3 +32,6 @@ class I18nMiddleware(BaseHTTPMiddleware):
         request.state.locale_path = self.locale_path
 
         return await call_next(request)
+
+
+__all__ = ['I18nMiddleware']

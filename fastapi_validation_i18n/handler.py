@@ -15,3 +15,6 @@ async def i18n_exception_handler(
         {'errors': errors},
         status_code=422,
     )
+
+
+__all__ = ['i18n_exception_handler']

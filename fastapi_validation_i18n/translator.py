@@ -1,5 +1,8 @@
 import json
+import os
 from typing import Any, Dict
+
+from ._helpers import get_package_root
 
 
 class Translator:
@@ -10,15 +13,22 @@ class Translator:
             cls._instances[locale] = super().__new__(cls)
         return cls._instances[locale]
 
-    def __init__(self, locale: str, locale_path: str = 'locale'):
+    def __init__(self, locale: str, locale_path: str):
         self.locale = locale
         self.locale_path = locale_path.rstrip('/')
+        self.translations: Dict[str, Any] = {}
 
     def load_translation(self, file_key: str) -> Any | Dict[str, Any] | None:
+        if file_key in self.translations:
+            return self.translations[file_key]
         file_path = f'{self.locale_path}/{self.locale}/{file_key}.json'
+        if not os.path.isfile(file_path):
+            file_path = str(
+                get_package_root().joinpath(f'locales/{self.locale}/{file_key}.json'))
         try:
             with open(file_path, encoding='utf-8') as file:
                 translation = json.load(file)
+            self.translations[file_key] = translation
             return translation
         except FileNotFoundError:
             return None
@@ -38,3 +48,6 @@ class Translator:
             translation = translation.format(**kwargs)  # type: ignore
 
         return translation
+
+
+__all__ = ['Translator']

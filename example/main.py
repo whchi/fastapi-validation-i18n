@@ -5,21 +5,34 @@ from typing import Annotated, List, Literal, Union
 from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, Field, field_validator, ValidationError
+from pydantic import BaseModel, Field, ValidationError
+from pydantic.functional_validators import field_validator
 from pydantic.networks import AnyHttpUrl
 from starlette.requests import Request
 
 from fastapi_validation_i18n import i18n_exception_handler, I18nMiddleware, Translator
+from fastapi_validation_i18n.base import setup
 
+# use this separately
 app = FastAPI(debug=True)
 
-app.add_middleware(I18nMiddleware, locale_path='example/locale')
 
-# for request validation error
-app.add_exception_handler(RequestValidationError, i18n_exception_handler)
+def setup_separately(app: FastAPI) -> None:
+    app.add_middleware(I18nMiddleware, locale_path='example/locale')
 
-# for pydantic validation error
-app.add_exception_handler(ValidationError, i18n_exception_handler)
+    # for request validation error
+    app.add_exception_handler(RequestValidationError, i18n_exception_handler)
+
+    # for pydantic validation error
+    app.add_exception_handler(ValidationError, i18n_exception_handler)
+
+
+def setup_with_single_function(app: FastAPI) -> None:
+    setup(app)
+
+
+# setup_separately(app)
+setup_with_single_function(app)
 
 
 class BlackCat(BaseModel):
@@ -44,12 +57,12 @@ class DeepBody(BaseModel):
 
     @field_validator('url')
     @classmethod
-    def validate_url(cls, v: AnyHttpUrl):
+    def validate_url(cls, v: AnyHttpUrl) -> str:
         return v.__str__()
 
     @field_validator('ipv4')
     @classmethod
-    def validate_ipv4(cls, v: IPv4Address):
+    def validate_ipv4(cls, v: IPv4Address) -> str:
         return v.__str__()
 
 
@@ -60,7 +73,7 @@ class InnerNestedExample(BaseModel):
 
     @field_validator('ipv6')
     @classmethod
-    def validate_ipv6(cls, v: IPv6Address):
+    def validate_ipv6(cls, v: IPv6Address) -> str:
         return v.__str__()
 
 
@@ -86,7 +99,7 @@ class Example(BaseModel):
 
 
 @app.get('/')
-async def root(r: Request):
+async def root(r: Request) -> dict[str, str]:
     return {
         'message':
             Translator('ja-JP',
@@ -104,4 +117,4 @@ async def post_root(payload: Example) -> JSONResponse:
 
 @app.get('/examples')
 async def get_examples() -> Example:
-    return Example(**{'message': 'this will not show up'})
+    return Example(**{'message': 'this will not show up'})  # type: ignore
