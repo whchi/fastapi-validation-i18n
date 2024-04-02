@@ -68,7 +68,16 @@ error message with i18n support in FastAPI
 # default to "locale" in your project path
 poetry run publish-locale <your-path> [--locale]
 ```
-1. add middleware and exception handler to your FastAPI app
+### Setup in FastAPI
+- use `setup`
+```py
+from fastapi_validation_i18n import setup
+from fastapi import FastAPI
+app = FastAPI()
+setup(app, locale_path=..., locale_list=...)
+
+```
+- use middleware and exception handler
 ```py
 from fastapi import FastAPI
 from fastapi_validation_i18n import I18nMiddleware, i18n_exception_handler
@@ -83,7 +92,6 @@ app.add_exception_handler(
     i18n_exception_handler
 )
 ```
-3. start use it
 
 there's 3 way to set locale
 

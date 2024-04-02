@@ -1,3 +1,5 @@
+import os
+from pathlib import Path
 from typing import Any, Dict, Sequence
 
 custom_types = [
@@ -26,7 +28,7 @@ def __msg_to_template(msg: str, context: Dict[str, Any] | None = None) -> str:
 
 
 def __translate_msg(
-        t: 'Translator',  # type: ignore
+        t: 'Translator',  # type: ignore # noqa: F821
         msg: str,
         context: Dict[str, Any]) -> str:
     return t.t('message.' + __msg_to_template(msg, context), **
@@ -34,10 +36,12 @@ def __translate_msg(
 
 
 def translate_errors(
-        t: 'Translator',  # type: ignore
-        errors: Sequence[Any]) -> Sequence[Any]:
-    return list(
-        map(
-            lambda error: {
-                **error, 'msg': __translate_msg(t, error['msg'], error.get('ctx', {}))
-            }, errors))
+        t: 'Translator',  # type: ignore # noqa: F821
+        errors: Sequence[Any]) -> list[Any]:
+    return [{
+        **error, 'msg': __translate_msg(t, error['msg'], error.get('ctx', {}))
+    } for error in errors]
+
+
+def get_package_root() -> Path:
+    return Path(os.path.dirname(__file__))
