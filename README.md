@@ -1,5 +1,5 @@
 error message with i18n support in FastAPI
-
+## response example
 ```json
 {
   "errors": [
@@ -57,18 +57,21 @@ error message with i18n support in FastAPI
   ]
 }
 ```
+## parameters
+all parameters are optional
+
+| param             | description                                                                      | default                     |
+|-------------------|----------------------------------------------------------------------------------|-----------------------------|
+| locale_path       | the path of your locale files                                                    | locales                     |
+| locale_list       | support locales in your app in tuple                                             | ('zh-TW', 'ja-JP', 'en-US') |
+| bind_to_life_span | set to `True` if you want the translator instance be created when on app startup | False                       |
+
 ## Attention
 - For FastAPI >=0.100.0 and pydantic v2, please use **^0.4.0**
 - For FastAPI < 0.100.0 nad pydantic v1, please use **^0.3.0**
 - built-in locales are **zh-TW, en-US, ja-JP**, you can change the locales by yourself
 
 ## How to run
-1. publish locales to your app path
-```bash
-# default to "locale" in your project path
-poetry run publish-locale <your-path> [--locale]
-```
-### Setup in FastAPI
 - use `setup`
 ```py
 from fastapi_validation_i18n import setup
@@ -92,9 +95,16 @@ app.add_exception_handler(
     i18n_exception_handler
 )
 ```
+## Other
+- publish locales to your app path
+```bash
+# default to "locale" in your project path
+poetry run publish-locale <your-path> [--locale]
+```
 
-there's 3 way to set locale
+- how to set locale
 
+there are 3 ways to set locale
 1. set `accept-language` header to your request
 2. set an API with `locale` in path
 3. set `locale` query parameter to your request

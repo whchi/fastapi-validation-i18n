@@ -12,8 +12,14 @@ def setup(app: FastAPI,
               'en-US',
               'ja-JP',
           ),
-          locale_path: str = 'locales') -> None:
-    app.add_middleware(I18nMiddleware, locale_list=locale_list, locale_path=locale_path)
+          locale_path: str = 'locales',
+          bind_to_lifespan: bool = False) -> None:
+    app.add_middleware(
+        I18nMiddleware,
+        locale_list=locale_list,
+        locale_path=locale_path,
+        bind_to_lifespan=bind_to_lifespan,
+    )
     app.add_exception_handler(
         RequestValidationError,
         i18n_exception_handler,
