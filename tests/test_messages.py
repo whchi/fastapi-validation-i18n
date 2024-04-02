@@ -1,13 +1,14 @@
+# type: ignore
 from enum import Enum
 from ipaddress import IPv4Address, IPv6Address
 from pathlib import Path
 from typing import Annotated, List, Literal, Union
 
-import pytest
 from pydantic import BaseModel, field_validator
 from pydantic.fields import Field
 from pydantic.networks import AnyHttpUrl
 from pydantic_core import ValidationError
+import pytest
 
 from fastapi_validation_i18n._helpers import translate_errors
 from fastapi_validation_i18n.translator import Translator
@@ -144,7 +145,7 @@ def test_i18n_validation():
             "ctx": {
                 "expected": "'cat'"
             },
-            "url": "https://errors.pydantic.dev/2.5/v/literal_error"
+            "url": "https://errors.pydantic.dev/2.6/v/literal_error"
         },
         {
             "type": "too_long",
@@ -156,6 +157,6 @@ def test_i18n_validation():
                 "max_length": 5,
                 "actual_length": 8
             },
-            "url": "https://errors.pydantic.dev/2.5/v/too_long"
+            "url": "https://errors.pydantic.dev/2.6/v/too_long"
         }
     ]
