@@ -13,7 +13,7 @@ async def i18n_exception_handler(
         t = r.state.fvi_translators[r.state.locale]
     else:
         t = Translator(r.state.locale, locale_path=r.state.locale_path)
-    errors = translate_errors(t, e.errors())
+    errors = list(translate_errors(t, e.errors()))
     return JSONResponse(
         {'errors': errors},
         status_code=422,
