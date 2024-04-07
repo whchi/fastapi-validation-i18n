@@ -136,7 +136,7 @@ def test_i18n_validation():
     with pytest.raises(ValidationError) as exc_info:
         Example(**data)
 
-    assert translate_errors(translator, exc_info.value.errors()) == [
+    assert list(translate_errors(translator, exc_info.value.errors())) == [
         {  # type: ignore
             "type": "literal_error",
             "loc": ("nested", "inner", "cat", "black", "pet_type"),

@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from typing import Any, Dict, Sequence
+from typing import Any, Dict, Generator, Sequence
 
 custom_types = [
     'predicate_failed', 'ip_any_interface', 'pattern_str_type', 'ip_v4_interface',
@@ -36,11 +36,12 @@ def __translate_msg(
 
 
 def translate_errors(
-        t: 'Translator',  # type: ignore # noqa: F821
-        errors: Sequence[Any]) -> list[Any]:
-    return [{
+    t: 'Translator',  # type: ignore # noqa: F821
+    errors: Sequence[Any]
+) -> Generator[Dict[str, Any], None, None]:
+    return ({
         **error, 'msg': __translate_msg(t, error['msg'], error.get('ctx', {}))
-    } for error in errors]
+    } for error in errors)
 
 
 def get_package_root() -> Path:
