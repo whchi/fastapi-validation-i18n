@@ -1,4 +1,7 @@
+![PyPI - Downloads](https://img.shields.io/pypi/dm/fastapi-validation-i18n)
+
 error message with i18n support in FastAPI
+
 ## response example
 ```json
 {
