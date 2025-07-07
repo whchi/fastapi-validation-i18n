@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
-from pydantic import ValidationError
 
 from .handler import i18n_exception_handler
 from .middleware import I18nMiddleware
+from .compat import get_all_validation_error_classes
 
 
 def setup(app: FastAPI,
@@ -24,4 +24,7 @@ def setup(app: FastAPI,
         RequestValidationError,
         i18n_exception_handler,
     )
-    app.add_exception_handler(ValidationError, i18n_exception_handler)
+    
+    # Add handlers for all possible ValidationError classes
+    for validation_error_class in get_all_validation_error_classes():
+        app.add_exception_handler(validation_error_class, i18n_exception_handler)

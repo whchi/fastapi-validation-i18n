@@ -70,9 +70,25 @@ all parameters are optional
 | bind_to_life_span | set to `True` if you want the translator instance be created when on app startup | False                       |
 
 ## Attention
+- **NEW**: The library now automatically detects your Pydantic version and adapts accordingly
 - For FastAPI >=0.100.0 and pydantic v2, please use **^0.4.0**
-- For FastAPI < 0.100.0 nad pydantic v1, please use **^0.3.0**
+- For FastAPI < 0.100.0 and pydantic v1, please use **^0.3.0**
 - built-in locales are **zh-TW, en-US, ja-JP**, you can change the locales by yourself
+
+## Auto-Detection Feature
+The library automatically detects whether you're using Pydantic v1 or v2 and handles the appropriate imports and error types. You can check the detected version:
+
+```py
+from fastapi_validation_i18n import is_pydantic_v2, get_pydantic_version
+
+print(f"Pydantic version: {get_pydantic_version()}")
+print(f"Is Pydantic v2: {is_pydantic_v2()}")
+```
+
+This means you don't need to worry about version compatibility - the library will automatically:
+- Use the correct ValidationError classes for your Pydantic version
+- Register appropriate exception handlers
+- Handle both `pydantic.ValidationError` and `pydantic_core.ValidationError` when using Pydantic v2
 
 ## How to run
 - use `setup`

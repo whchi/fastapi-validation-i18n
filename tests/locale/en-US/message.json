@@ -100,7 +100,7 @@
     "Decimal input should have no more than {decimal_places} decimal places": "Decimal input should have no more than {decimal_places} decimal places",
     "Decimal input should have no more than {decimal_places} decimal place": "Decimal input should have no more than {decimal_places} decimal place",
     "Decimal input should have no more than {whole_digits} digits before the decimal point": "Decimal input should have no more than {whole_digits} digits before the decimal point",
-    "Decimal input should have no more than {whole_digits} digit before the decimal point": "Decimal input should have no more than {whole_digits} digit before the decimal point"
+    "Decimal input should have no more than {whole_digits} digit before the decimal point": "Decimal input should have no more than {whole_digits} digit before the decimal point",
     "Input is not a valid path": "Input is not a valid path",
     "Predicate {predicate_name}failed": "Predicate {predicate_name}failed",
     "'{type_name}' instances are not allowed as a Sequence value": "'{type_name}' instances are not allowed as a Sequence value",

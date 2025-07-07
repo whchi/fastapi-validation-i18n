@@ -13,6 +13,12 @@ from starlette.requests import Request
 from fastapi_validation_i18n import i18n_exception_handler, I18nMiddleware, Translator
 from fastapi_validation_i18n.base import setup
 
+# NEW: Auto-detection for Pydantic v2
+# The library now automatically detects whether you're using Pydantic v1 or v2
+# and adapts its behavior accordingly. You can check the version like this:
+from fastapi_validation_i18n import is_pydantic_v2, get_pydantic_version
+print(f"Auto-detected Pydantic version: {get_pydantic_version()} (v2: {is_pydantic_v2()})")
+
 # use this separately
 app = FastAPI(debug=True)
 
@@ -24,10 +30,14 @@ def setup_separately(app: FastAPI) -> None:
     app.add_exception_handler(RequestValidationError, i18n_exception_handler)
 
     # for pydantic validation error
+    # NOTE: With auto-detection, the library automatically registers handlers
+    # for all appropriate ValidationError classes based on your Pydantic version
     app.add_exception_handler(ValidationError, i18n_exception_handler)
 
 
 def setup_with_single_function(app: FastAPI) -> None:
+    # NEW: The setup function now automatically detects your Pydantic version
+    # and registers the appropriate ValidationError handlers for both v1 and v2
     setup(app)
 
 
