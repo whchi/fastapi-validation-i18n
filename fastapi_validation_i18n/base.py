@@ -22,6 +22,6 @@ def setup(app: FastAPI,
     )
     app.add_exception_handler(
         RequestValidationError,
-        i18n_exception_handler,
+        i18n_exception_handler,  # type: ignore[arg-type]
     )
-    app.add_exception_handler(ValidationError, i18n_exception_handler)
+    app.add_exception_handler(ValidationError, i18n_exception_handler)  # type: ignore[arg-type]

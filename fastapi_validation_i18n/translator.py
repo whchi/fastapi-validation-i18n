@@ -45,9 +45,9 @@ class Translator:
                 return f'Key {key} not found in {self.locale} locale'
 
         if kwargs:
-            translation = translation.format(**kwargs)  # type: ignore
+            translation = str(translation).format(**kwargs)
 
-        return translation
+        return str(translation)
 
 
 __all__ = ['Translator']

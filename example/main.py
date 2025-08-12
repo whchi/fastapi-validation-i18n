@@ -106,7 +106,7 @@ async def root(r: Request) -> dict[str, str]:
                        locale_path='example/locale').t('message.field required'),
         'request_locale_message':
             Translator(r.state.locale,
-                       locale_path='example/locale').t('message.field required'),
+                       locale_path='example/locale').t("message.String should match pattern '{pattern}'", pattern='^\\d{4}-\\d{2}-\\d{2}$'),
     }
 
 
