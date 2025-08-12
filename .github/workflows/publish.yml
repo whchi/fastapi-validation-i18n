@@ -2,38 +2,32 @@ name: Publish
 
 on:
   release:
-    types:
-      - created
+    types: [created]
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/fastapi-validation-i18n
+    permissions:
+      id-token: write
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up python
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.8"
-          cache-dependency-path: pyproject.toml
-      - uses: actions/cache@v3
-        id: cache
-        with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-publish
-      - name: Install build dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pip install build
-      - name: Build distribution
-        run: python -m build
-      - name: Publish
-        uses: pypa/gh-action-pypi-publish@v1.8.14
+          python-version: '3.11'
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Build package
+        run: uv build
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
