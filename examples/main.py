@@ -113,10 +113,10 @@ async def root(r: Request) -> dict[str, str]:
     return {
         'message':
             Translator('ja-JP',
-                       locale_path='example/locale').t('message.field required'),
+                       locale_path='examples/locale').t('message.field required'),
         'request_locale_message':
             Translator(r.state.locale,
-                       locale_path='example/locale').t('message.field required'),
+                       locale_path='examples/locale').t('message.field required'),
     }
 
 

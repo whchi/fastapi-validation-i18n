@@ -37,7 +37,7 @@ Successfully implemented automatic detection of Pydantic v2 with full backward c
 - `fastapi_validation_i18n/__init__.py` - Added version detection exports
 - `fastapi_validation_i18n/handler.py` - Updated to use auto-detection
 - `fastapi_validation_i18n/base.py` - Enhanced setup function
-- `example/main.py` - Added auto-detection comments
+- `examples/main.py` - Added auto-detection comments
 - `README.md` - Added auto-detection documentation
 - `tests/locale/en-US/message.json` - Fixed JSON syntax error
 
