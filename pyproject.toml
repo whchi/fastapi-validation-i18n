@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling >= 1.13.0"]
+requires = ["hatchling >= 1.27.0"]
 build-backend = "hatchling.build"
 
 [tool.hatch.version]
@@ -29,29 +29,6 @@ keywords = [
 Repository = "https://github.com/whchi/fastapi-validation-i18n"
 [project.scripts]
 publish-locale = 'fastapi_validation_i18n.scripts.publish:main'
-
-[tool.poetry]
-name = "fastapi_validation_i18n"
-authors = ["whc <whccchi@gmail.com>"]
-license = "MIT"
-packages = [{include = "fastapi_validation_i18n"}]
-description = ""
-version = "0.1.0"
-
-[tool.poetry.dependencies]
-python = "^3.8"
-fastapi = ">0.99"
-pydantic = "^2"
-
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.3.4"
-yapf = "^0.40.2"
-uvicorn = "^0.29.0"
-mypy = "^1.9.0"
-pytest = "^8.1.1"
-pre-commit = "^3.5.0"
-pydantic-core = "^2.16.0"
-
 
 [tool.mypy]
 strict_optional = true
@@ -117,10 +94,13 @@ testpaths = [
 log_format = "%(asctime)s (%(filename)-16s:%(lineno)-3s) %(levelname)-8s %(message)s"
 log_date_format = "%Y-%M-%D %H:%M:%S"
 
-
-[tool.poetry.scripts]
-publish-locale = 'fastapi_validation_i18n.scripts.publish:main'
-
-[virtualenv]
-create = true
-in-project = true
+[dependency-groups]
+dev = [
+    "ruff>=0.3.4",
+    "yapf>=0.40.2",
+    "uvicorn>=0.29.0",
+    "mypy>=1.9.0",
+    "pytest>=8.1.1",
+    "pre-commit>=3.5.0",
+    "pydantic-core>=2.16.0",
+]
