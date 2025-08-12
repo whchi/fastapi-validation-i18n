@@ -1,10 +1,10 @@
 .PHONY:install test clean
 
 install:
-	poetry install
+	uv sync
 
 test:
-	poetry run pytest
+	uv run pytest
 
 clean:
 	find . -name "*.pyc" | xargs rm -rf
