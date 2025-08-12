@@ -102,7 +102,7 @@ app.add_exception_handler(
 - publish locales to your app path
 ```bash
 # default to "locale" in your project path
-poetry run publish-locale <your-path> [--locale]
+uv run publish-locale <your-path> [--locale]
 ```
 
 - how to set locale

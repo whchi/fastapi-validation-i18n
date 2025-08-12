@@ -29,6 +29,7 @@ keywords = [
 Repository = "https://github.com/whchi/fastapi-validation-i18n"
 [project.scripts]
 publish-locale = 'fastapi_validation_i18n.scripts.publish:main'
+test = 'pytest:main'
 
 [tool.mypy]
 strict_optional = true
